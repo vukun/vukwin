@@ -112,6 +112,19 @@ public class UserServiceImpl implements UserService {
         return umsMemberReceiveAddress1;
     }
 
+    @Override
+    public String register(UmsMember umsMember) {
+        UmsMember umsMemberResult = userMapper.selectOne(umsMember);
+        if(umsMemberResult == null){
+            umsMember.setMemberLevelId("1");
+            umsMember.setNickname(umsMember.getUsername());
+            userMapper.insertSelective(umsMember);
+            return "success";
+        }else{
+            return "fail";
+        }
+    }
+
     /**
      * 缓存中如果没有，就需要从数据库中取数据
      * @param umsMember
