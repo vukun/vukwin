@@ -10,6 +10,6 @@ import tk.mybatis.mapper.common.Mapper;
  */
 public interface UserMapper extends Mapper<UmsMember> {
 
-    UmsMember judgeUserIsExsitByPhone(@Param("phone") String phone, @Param("username") String username);
+    int judgeUserIsExsitByPhone(@Param("phone") String phone, @Param("username") String username);
 
 }
