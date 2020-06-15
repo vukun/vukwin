@@ -14,4 +14,22 @@
 	    OR  username = #{username};
     </select>
 
+    <select id="checkUsername" resultType="java.lang.Integer">
+        SELECT
+	        count( * )
+        FROM
+	        ums_member
+        WHERE
+	        username = #{username};
+    </select>
+
+    <select id="checkPhone" resultType="java.lang.Integer">
+        SELECT
+	        count( * )
+        FROM
+	        ums_member
+        WHERE
+	        phone = #{phone};
+    </select>
+
 </mapper>
