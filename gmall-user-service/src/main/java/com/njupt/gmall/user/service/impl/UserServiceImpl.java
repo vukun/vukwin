@@ -12,6 +12,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import redis.clients.jedis.Jedis;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -113,17 +114,37 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public String register(UmsMember umsMember) {
-        UmsMember umsMemberResult = userMapper.selectOne(umsMember);
-        if(umsMemberResult == null){
-            umsMember.setMemberLevelId("1");
-            umsMember.setNickname(umsMember.getUsername());
-            userMapper.insertSelective(umsMember);
-            return "success";
+    public void register(UmsMember umsMember) {
+        umsMember.setMemberLevelId("1");
+        umsMember.setCreateTime(new Date());
+        umsMember.setSourceType("1");
+        umsMember.setIntegration(0);
+        umsMember.setGrowth(1);
+        umsMember.setHistoryIntegration(0);
+        umsMember.setNickname(umsMember.getUsername());
+        userMapper.insertSelective(umsMember);
+    }
+
+    @Override
+    public String checkUsername(String username) {
+        int count = userMapper.checkUsername(username);
+        if(count == 0){
+            return "SUCCESS";
         }else{
-            return "fail";
+            return "FAIL";
         }
     }
+
+    @Override
+    public String checkPhone(String phone) {
+        int count = userMapper.checkPhone(phone);
+        if(count == 0){
+            return "SUCCESS";
+        }else{
+            return "FAIL";
+        }
+    }
+
 
     /**
      * 缓存中如果没有，就需要从数据库中取数据
