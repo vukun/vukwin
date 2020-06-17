@@ -14,7 +14,7 @@ public class OmsCartItem implements Serializable{
     private String productSkuId;
     private String memberId;
     private BigDecimal quantity;
-    // 商品价格
+    // 为商品价格
     private BigDecimal price;
     private String sp1;
     private String sp2;
