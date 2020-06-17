@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.*;
 
 /**
@@ -28,7 +29,9 @@ public class SearchController {
     //展示首页的信息
     @RequestMapping("index")
     @LoginRequired(loginSuccess = false)
-    public String index(){
+    public String index(HttpServletRequest request, ModelMap modelMap){
+        String nickName = request.getParameter("nickName");
+        modelMap.put("nickName", nickName);
         return "index";
     }
 

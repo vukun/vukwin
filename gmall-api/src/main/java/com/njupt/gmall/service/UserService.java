@@ -22,4 +22,11 @@ public interface UserService {
     List<UmsMemberReceiveAddress> getReceiveAddressByMemberId(String memberId);
 
     UmsMemberReceiveAddress getReceiveAddressById(String receiveAddressId);
+
+    void register(UmsMember umsMember);
+
+    String checkUsername(String username);
+
+    String checkPhone(String phone);
+
 }

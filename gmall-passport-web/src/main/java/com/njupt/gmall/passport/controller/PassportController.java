@@ -54,9 +54,9 @@ public class PassportController {
             //登录成功，需要用jwt制作token
             Map<String, Object> userMap = new HashMap<>();
             String memberId = umsMemberLogin.getId();
-            String nickname = umsMemberLogin.getNickname();
+            String nickName = umsMemberLogin.getNickname();
             userMap.put("memberId",memberId);
-            userMap.put("nickname",nickname);
+            userMap.put("nickName",nickName);
             String ip = request.getHeader("x-forwarded-for");
             if(StringUtils.isBlank(ip)){
                 ip = request.getRemoteAddr();
@@ -90,7 +90,7 @@ public class PassportController {
         if(decode != null){
             map.put("status", "success");
             map.put("memberId", (String) decode.get("memberId"));
-            map.put("nickname", (String) decode.get("nickname"));
+            map.put("nickName", (String) decode.get("nickName"));
         }else{
             map.put("status", "fail");
         }
@@ -145,10 +145,10 @@ public class PassportController {
         //生成jwt的token，并且重定向到首页，携带token
         String token = null;
         String memberId = umsMember.getId();//rpc的主键返回策略失效，因为无法跨越两层，他只能在dao层有用
-        String nickname = umsMember.getNickname();
+        String nickName = umsMember.getNickname();
         Map<String,Object> userMap = new HashMap<>();
         userMap.put("memberId",memberId);//是保存数据库后主键返回策略生成的id
-        userMap.put("nickname",nickname);
+        userMap.put("nickName",nickName);
 
         String ip = request.getHeader("x-forwarded-for");// 通过nginx转发的客户端ip
         if(StringUtils.isBlank(ip)){

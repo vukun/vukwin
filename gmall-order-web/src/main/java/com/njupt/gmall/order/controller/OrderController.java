@@ -54,7 +54,7 @@ public class OrderController {
     public String toTrade(HttpServletRequest request, HttpServletResponse response, HttpSession session, ModelMap modelMap) {
 
         String memberId = (String)request.getAttribute("memberId");
-        String nickname = (String)request.getAttribute("nickname");
+        String nickName = (String)request.getAttribute("nickName");
         //根据用户的memberId查询用户的收货地址
         List<UmsMemberReceiveAddress> umsMemberReceiveAddresses = userService.getReceiveAddressByMemberId(memberId);
         //将购物车集合转化为页面计算清单集合
@@ -106,7 +106,7 @@ public class OrderController {
     @LoginRequired(loginSuccess = true)
     public ModelAndView submitOrder(String receiveAddressId, BigDecimal totalAmount, String tradeCode, HttpServletRequest request, HttpServletResponse response, HttpSession session, ModelMap modelMap) {
         String memberId = (String)request.getAttribute("memberId");
-        String nickname = (String)request.getAttribute("nickname");
+        String nickName = (String)request.getAttribute("nickName");
         //校验交易码
         String success = orderService.checkTradeCode(memberId, tradeCode);
         if(success.equals("success")){
@@ -116,7 +116,7 @@ public class OrderController {
             omsOrder.setCreateTime(new Date());
             omsOrder.setDiscountAmount(null);
             omsOrder.setMemberId(memberId);
-            omsOrder.setMemberUsername(nickname);
+            omsOrder.setMemberUsername(nickName);
             omsOrder.setNote("快点发货");
             String outTradeNo = "gmall";
             outTradeNo = outTradeNo + System.currentTimeMillis();
