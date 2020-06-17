@@ -67,7 +67,7 @@ public class CartController {
         omsCartItem.setQuantity(new BigDecimal(quantity));
         //判断用户是否登录
         String memberId = (String)request.getAttribute("memberId");
-        String nickname = (String)request.getAttribute("nickname");
+        String nickName = (String)request.getAttribute("nickName");
         //判断用户是否登录
         if(StringUtils.isBlank(memberId)){
             //用户没有登陆的状态下,把数据放入到cookie中
@@ -106,7 +106,7 @@ public class CartController {
             if(omsCartItemFromDb == null){
                 //如果没有，放入数据库中
                 omsCartItem.setMemberId(memberId);
-                omsCartItem.setMemberNickname(nickname);
+                omsCartItem.setMemberNickname(nickName);
                 omsCartItem.setQuantity(new BigDecimal(quantity));
                 //将封装好的商品信息放入到数据库中
                 cartService.addCart(omsCartItem);
@@ -151,7 +151,7 @@ public class CartController {
 
         List<OmsCartItem> omsCartItems = new ArrayList<>();
         String memberId = (String)request.getAttribute("memberId");
-        String nickname = (String)request.getAttribute("nickname");
+        String nickName = (String)request.getAttribute("nickName");
         if(StringUtils.isNotBlank(memberId)){
             //已经登陆的情况下，查询缓存和Db
             omsCartItems = cartService.cartList(memberId);
@@ -208,7 +208,7 @@ public class CartController {
     public String checkCart(String isChecked, String skuId, HttpServletRequest request, HttpServletResponse response,HttpSession session, ModelMap modelMap){
 
         String memberId = (String)request.getAttribute("memberId");
-        String nickname = (String)request.getAttribute("nickname");
+        String nickName = (String)request.getAttribute("nickName");
 
        //调用服务修改状态
         OmsCartItem omsCartItem = new OmsCartItem();
