@@ -42,6 +42,7 @@
     <li class="left_floor_ding">顶部</li>
   </ul>
   <header>
+    <input name="nickName_hidden" th:value="${nickName}" type="hidden"/>
     <div class="head">
       <a href="#"><img src="/index/img/img_01.png" /></a>
       <p>X</p>
@@ -95,15 +96,16 @@
   					</b>
         <ul>
           <li>
-            <a href="http://localhost:8085/index?ReturnUrl=http://localhost:8083/index">你好，请登录</a>
+            <a href="http://localhost:8085/index?ReturnUrl=http://localhost:8083/index" id="loginData" style="display: none">你好，请登录</a>
 
           </li>
           <li>
-            <a href="http://localhost:8080/index.html" class="li_2">免费注册</a>
+            <a href="http://localhost:8080/index.html" class="li_2" id="registerData" style="display: none">免费注册</a>
           </li>
+          <li id="successLoginData" style="display: none"><span th:text="'你好，'+ ${nickName}" class="li_2"></span><span class="li_2">，退出</span></li>
           <span>|</span>
           <li>
-            <a href="#">我的订单</a>
+            <a href="http://localhost:8086/myOrder" style="font-size:13px;color: black">我的订单</a>
           </li>
 
 
@@ -113,21 +115,21 @@
     <!--搜索导航-->
     <div class="header_sous">
       <div class="header_form">
-        <input id="searchText" type="text" placeholder="" />
+        <input id="searchText" type="text" placeholder="目前仅支持搜索手机" />
         <span style="background: url(../static/index/img/img_12.png) 0 -1px;"></span>
         <!--<button><i class="glyphicon"></i></button>-->
         <a href="#" ><img src="/index/img/img_09.png" onclick="search()" /></a>
       </div>
-      <div class="header_ico">
-        <div class="header_gw">
-          <img src="/index/img/img_15.png" />
-          <span><a href="/购物车\One_JDshop.html">我的购物车</a></span>
-          <span>0</span>
-        </div>
-        <div class="header_ko">
-          <p>购物车中还没有商品，赶紧选购吧！</p>
-        </div>
-      </div>
+<!--      <div class="header_ico">-->
+<!--        <div class="header_gw">-->
+<!--          <img src="/index/img/img_15.png" />-->
+<!--          <span><a href="#">我的购物车</a></span>-->
+<!--          <span>0</span>-->
+<!--        </div>-->
+<!--        <div class="header_ko">-->
+<!--          <p>购物车中还没有商品，赶紧选购吧！</p>-->
+<!--        </div>-->
+<!--      </div>-->
       <div class="header_form_nav">
         <ul>
           <li>
@@ -664,9 +666,19 @@
 </body>
 <script type="text/javascript">
   function search() {
-      var keyword=$("#searchText").val()
-      window.location.href="http://localhost:8083/list.html?keyword="+keyword;
+      var keyword=$("#searchText").val();
+      window.location.href="http://localhost:8083/list?keyword="+keyword;
   }
+  //根据页面nickName非不非空来决定显示的是“请登录” 还是 “登录后的用户名”
+  $(function () {
+      var loginStatus = $("input[name='nickName_hidden']").val();
+      if(loginStatus == null || loginStatus == ""){
+          document.getElementById("loginData").style = "block";
+          document.getElementById("registerData").style = "block";
+      }else{
+          document.getElementById("successLoginData").style = "block";
+      }
+  })
 
 </script>
 <script type="text/javascript" src="/index/js/text.js"></script>

@@ -12,11 +12,12 @@
 </head>
 <body>
 <!--头部-->
+<input name="nickName_hidden" th:value="${nickName}" type="hidden"/>
 <div class="header_head">
     <div class="header_head_box">
         <b class="header_head_p">
             <div style="overflow: hidden">
-                <a href="#" class="header_head_p_a1">
+                <a href="http://localhost:8083/index" class="header_head_p_a1">
                     首页
                 </a>
             </div>
@@ -24,7 +25,16 @@
         </b>
         <ul>
             <li>
-                <a href="#" class="li_2">你好，请登录</a>
+                <a href="http://localhost:8085/index?ReturnUrl=http://localhost:8083/list" id="loginData" style="display: none">你好，请登录</a>
+
+            </li>
+            <li>
+                <a href="http://localhost:8080/index.html" class="li_2" id="registerData" style="display: none">免费注册</a>
+            </li>
+            <li id="successLoginData" style="display: none"><span th:text="'你好，'+ ${nickName}" class="li_2"></span><span class="li_2">，退出</span></li>
+            <span>|</span>
+            <li>
+                <a href="http://localhost:8086/myOrder" style="font-size:13px;color: black">我的订单</a>
             </li>
         
         </ul>
@@ -40,16 +50,16 @@
         <input id="keyword" name="keyword" type="text" placeholder="手机" />
         <a href="#" onclick="searchList()">搜索</a>
     </div>
-    <div class="header_ico">
-        <div class="header_gw">
-            <span><a href="#">我的购物车</a></span>
-            <img src="/list/image/settleup-@1x.png" />
-            <span>0</span>
-        </div>
-        <div class="header_ko">
-            <p>购物车中还没有商品，赶紧选购吧！</p>
-        </div>
-    </div>
+<!--    <div class="header_ico">-->
+<!--        <div class="header_gw">-->
+<!--            <span><a href="#">我的购物车</a></span>-->
+<!--            <img src="/list/image/settleup-@1x.png" />-->
+<!--            <span>0</span>-->
+<!--        </div>-->
+<!--        <div class="header_ko">-->
+<!--            <p>购物车中还没有商品，赶紧选购吧！</p>-->
+<!--        </div>-->
+<!--    </div>-->
 
     <nav>
         <ul>
@@ -409,7 +419,15 @@
         window.location.href="/list.html?keyword="+keyword;
     }
 
-
+    $(function () {
+        var loginStatus = $("input[name='nickName_hidden']").val();
+        if(loginStatus == null || loginStatus == ""){
+            document.getElementById("loginData").style = "block";
+            document.getElementById("registerData").style = "block";
+        }else{
+            document.getElementById("successLoginData").style = "block";
+        }
+    })
 
     $(".sl_ext a:nth-child(1)").hover(function(){
         $(this).children("b").stop(true).animate({top:"3px"},50);

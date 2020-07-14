@@ -300,8 +300,9 @@ nav {
     display: flex;
     justify-content: space-between; }
     .section .top-2 span {
-      font-size: 14px;
-      padding: 10px 25px; }
+      font: 18px/1.6 tahoma , arial,"楷体";
+      /*color: #e4393c;*/
+      padding: 5px 10px; }
     .section .top-2 span:first-child {
       font-weight: 600; }
     .section .top-2 span:last-child {

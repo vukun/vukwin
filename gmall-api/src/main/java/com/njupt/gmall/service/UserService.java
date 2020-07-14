@@ -29,4 +29,5 @@ public interface UserService {
 
     String checkPhone(String phone);
 
+    void addAddress(UmsMemberReceiveAddress umsMemberReceiveAddress);
 }

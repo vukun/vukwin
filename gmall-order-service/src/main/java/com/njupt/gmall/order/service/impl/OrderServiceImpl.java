@@ -17,6 +17,7 @@ import redis.clients.jedis.Jedis;
 import tk.mybatis.mapper.entity.Example;
 
 import javax.jms.*;
+import java.text.SimpleDateFormat;
 import java.util.Collections;
 import java.util.List;
 import java.util.UUID;
@@ -164,4 +165,38 @@ public class OrderServiceImpl implements OrderService {
             }
         }
     }
+
+    @Override
+    public List<OmsOrder> getMyOrderListByMemberId(String memberId) {
+        List<OmsOrder> omsOrders = omsOrderMapper.getMyOrderListByMemberId(memberId);
+        if(omsOrders.size() > 0){
+            for (OmsOrder omsOrder : omsOrders) {
+                List<OmsOrderItem> omsOrderItems = omsOrderItemMapper.getMyOrderItemListByOrderSn(omsOrder.getOrderSn());
+                omsOrder.setOmsOrderItems(omsOrderItems);
+                if(omsOrder.getStatus().equals("0")){
+                    omsOrder.setStatus("待付款");
+                }
+                if(omsOrder.getStatus().equals("1")){
+                    omsOrder.setStatus("待发货");
+                }
+                if(omsOrder.getStatus().equals("2")){
+                    omsOrder.setStatus("已发货");
+                }
+                if(omsOrder.getStatus().equals("3")){
+                    omsOrder.setStatus("已完成");
+                }
+                if(omsOrder.getStatus().equals("4")){
+                    omsOrder.setStatus("已关闭");
+                }
+                if(omsOrder.getStatus().equals("5")){
+                    omsOrder.setStatus("无效订单");
+                }
+                SimpleDateFormat formatter = new SimpleDateFormat( "yyyy-MM-dd HH:mm:ss");
+                String format = formatter.format(omsOrder.getCreateTime());
+                omsOrder.setCreatetime(format);
+            }
+        }
+        return omsOrders;
+    }
+
 }

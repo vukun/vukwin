@@ -1,5 +1,6 @@
 package com.njupt.gmall.bean;
 
+import javax.persistence.Transient;
 import java.io.Serializable;
 import java.math.BigDecimal;
 
@@ -30,6 +31,16 @@ public class OmsOrderItem implements Serializable {
     private int giftGrowth;
     private String productAttr;
 
+    @Transient
+    private int key;
+
+    public int getKey() {
+        return key;
+    }
+
+    public void setKey(int key) {
+        this.key = key;
+    }
 
     public String getId() {
         return id;

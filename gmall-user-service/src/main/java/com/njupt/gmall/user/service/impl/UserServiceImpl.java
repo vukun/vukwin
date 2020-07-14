@@ -145,6 +145,12 @@ public class UserServiceImpl implements UserService {
         }
     }
 
+    @Override
+    public void addAddress(UmsMemberReceiveAddress umsMemberReceiveAddress) {
+        umsMemberReceiveAddress.setDefaultStatus(0);
+        umsMemberReceiveAddressMapper.insertSelective(umsMemberReceiveAddress);
+    }
+
 
     /**
      * 缓存中如果没有，就需要从数据库中取数据

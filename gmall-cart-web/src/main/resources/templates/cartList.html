@@ -12,22 +12,30 @@
 </head>
 <body>
 <header>
+    <input name="nickName_hidden" th:value="${nickName}" type="hidden"/>
     <a name="mao1">
         <div class="header">
 
             <ul class="header-left">
                 <li>
 
-                    <a href="">首页</a>
+                    <a class="glyphicon glyphicon-home" href="http://localhost:8083/index" style="display: none">首页</a>
                 </li>
 
             </ul>
             <ul class="header-right">
-                <li><a href="../登录页面\index.html" style="color: red;">你好，请登录</a></li>
-                <li><a href="../注册页面\index.html" >免费注册</a></li>
-                <li class="spacer"></li>
-                <li><a href="">我的订单</a></li>
-                <li class="spacer"></li>
+                <li>
+                    <a href="http://localhost:8085/index?ReturnUrl=http://localhost:8084/cartList" id="loginData" style="display: none">你好，请登录</a>
+
+                </li>
+                <li>
+                    <a href="http://localhost:8080/index.html" class="li_2" id="registerData" style="display: none">免费注册</a>
+                </li>
+                <li id="successLoginData" style="display: none"><span th:text="'你好，'+ ${nickName}" class="li_2"></span><span class="li_2">，退出</span></li>
+<!--                <span>|</span>-->
+                <li>
+                    <a href="http://localhost:8086/myOrder" style="font-size:13px;color: black">我的订单</a>
+                </li>
 
             </ul>
             <div style="clear: both;"></div>
@@ -54,8 +62,8 @@
         </div>
         <div class="one_search_load"   th:if="${userId}==null" >
             <img src="/img/shop_07.jpg" class="one_load_wraing">
-            <span>您还没有登录！登录后购物车的商品将保存到您账号中</span>
-            <a href="#"><input type="button" onclick="login()" value="立即登录" class="one_load_btn"></a>
+<!--            <span>您还没有登录！登录后购物车的商品将保存到您账号中</span>-->
+<!--            <a href="#"><input type="button" onclick="login()" value="立即登录" class="one_load_btn"></a>-->
         </div>
     </div>
 </div>
@@ -166,6 +174,17 @@
 <script src="/js/index.js" charset="utf-8"></script>
 <script type="text/javascript">
 
+    //根据页面nickName非不非空来决定显示的是“请登录” 还是 “登录后的用户名”
+    $(function () {
+        var loginStatus = $("input[name='nickName_hidden']").val();
+        if(loginStatus == null || loginStatus == ""){
+            document.getElementById("loginData").style = "block";
+            document.getElementById("registerData").style = "block";
+        }else{
+            document.getElementById("successLoginData").style = "block";
+        }
+    })
+
      function toTrade(){
          window.location.href="http://localhost:8086/toTrade";
     }
@@ -194,14 +213,14 @@
 
      //封装总价钱函数
      function sumSumPrice(){
-//         var zzj=0;
-//         $(".check").each(function () {
-//             if($(this).prop("checked")){
-//                 var zj = $(this).parents("ol").find(".zj").html().substring(1);
-//                 zzj=zzj+parseFloat(zj);
-//             }
-//             $(".fnt").html("￥"+zzj+".00")
-//         });
+        // var zzj=0;
+        // $(".check").each(function () {
+        //     if($(this).prop("checked")){
+        //         var zj = $(this).parents("ol").find(".zj").html().substring(1);
+        //         zzj=zzj+parseFloat(zj);
+        //     }
+        //     $(".fnt").html("￥"+zzj+".00")
+        // });
      }
 
 /*    //购物车结算固定定位

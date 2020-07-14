@@ -75,6 +75,7 @@ public class OrderController {
         //生成交易码，避免用户重复性提交订单
         String tradeCode = orderService.genTradeCode(memberId);
         modelMap.put("tradeCode", tradeCode);
+        modelMap.put("memberId", memberId);
         return "trade";
     }
 
@@ -109,7 +110,8 @@ public class OrderController {
         String nickName = (String)request.getAttribute("nickName");
         //校验交易码
         String success = orderService.checkTradeCode(memberId, tradeCode);
-        if(success.equals("success")){
+        UmsMemberReceiveAddress umsMemberReceiveAddress = userService.getReceiveAddressById(receiveAddressId);
+        if(success.equals("success") && umsMemberReceiveAddress != null && !umsMemberReceiveAddress.equals("")){
             ArrayList<OmsOrderItem> omsOrderItems = new ArrayList<>();
             OmsOrder omsOrder = new OmsOrder();
             omsOrder.setAutoConfirmDay(7);
@@ -125,7 +127,7 @@ public class OrderController {
             omsOrder.setOrderSn(outTradeNo);
             omsOrder.setPayAmount(totalAmount);
             omsOrder.setOrderType(1);
-            UmsMemberReceiveAddress umsMemberReceiveAddress = userService.getReceiveAddressById(receiveAddressId);
+
             omsOrder.setReceiverCity(umsMemberReceiveAddress.getCity());
             omsOrder.setReceiverDetailAddress(umsMemberReceiveAddress.getDetailAddress());
             omsOrder.setReceiverName(umsMemberReceiveAddress.getName());
@@ -183,5 +185,30 @@ public class OrderController {
             ModelAndView mv = new ModelAndView("tradeFail");
             return mv;
         }
+    }
+
+    /**
+     * 增加收货人地址
+     * @param umsMemberReceiveAddress
+     * @return
+     */
+    @RequestMapping("addAddress")
+    @LoginRequired(loginSuccess = true)
+    public String addAddress(UmsMemberReceiveAddress umsMemberReceiveAddress, ModelMap modelMap){
+        userService.addAddress(umsMemberReceiveAddress);
+        List<UmsMemberReceiveAddress> umsMemberReceiveAddresses = userService.getReceiveAddressByMemberId(umsMemberReceiveAddress.getMemberId());
+        modelMap.put("userAddressList", umsMemberReceiveAddresses);
+        return "tradeInner";
+    }
+
+    @RequestMapping("myOrder")
+    @LoginRequired(loginSuccess = true)
+    public String myOrder(HttpServletRequest request, ModelMap modelMap){
+        String memberId = (String) request.getAttribute("memberId");
+        String nickName = (String) request.getAttribute("nickName");
+        List<OmsOrder> omsOrders = orderService.getMyOrderListByMemberId(memberId);
+        modelMap.put("omsOrders", omsOrders);
+        modelMap.put("nickName", nickName);
+        return "myOrderList";
     }
 }

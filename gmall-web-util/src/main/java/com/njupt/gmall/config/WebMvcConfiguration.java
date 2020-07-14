@@ -6,6 +6,10 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
+
+//WebMvcConfigurerAdapter是一个抽象类，
+// 它只提供了一些空的接口让用户去重写，
+// 比如如果想添加拦截器的时候，需要去重写一下addInterceptors()这个方法，去配置自定义的拦截器。
 @Configuration
 public class WebMvcConfiguration extends WebMvcConfigurerAdapter {
     @Autowired

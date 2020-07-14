@@ -22,4 +22,5 @@ public interface CartService {
     void checkCart(OmsCartItem omsCartItem);
 
     void delCart(String skuId);
+
 }

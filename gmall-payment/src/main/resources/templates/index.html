@@ -11,8 +11,8 @@
       <div class="Jdbox_head">
         <img src="img\logo1.jpg" alt="">
         <ul>
-          <li><span th:text="'你好,'+ ${nickName}"></span><span>退出</span></li>
-          <li>我的订单</li>
+          <li><span th:text="'你好 , '+ ${nickName}"></span><span>, 退出</span></li>
+          <li><a href="http://localhost:8086/myOrder" style="font-size:14px;color: black">我的订单</a></li>
           <li>支付帮助</li>
         </ul>
       </div>
@@ -20,13 +20,14 @@
         <dl>
 
           <dd>
-            <span th:text="'订单提交成功，请尽快付款！订单号：'+${outTradeNo}"> </span>
-            <span th:text="'应付金额'+${totalAmount}+'元'"> </span>
+            <span th:text="'订单提交成功, 请尽快付款 !'"> </span><br/><br/>
+            <span th:text="'订单号：'+${outTradeNo}"> </span>
+            <span th:text="' 应付金额 '+${totalAmount}+' 元 '"> </span>
           </dd>
           <dd>
-            <span>推荐使用</span>
-            <span>扫码支付请您在<font>24小时</font>内完成支付，否则订单会被自动取消(库存紧订单请参见详情页时限)</span>
-            <span>订单详细</span>
+            <span style="font-size: small">推荐使用: 扫码支付</span>
+            <span style="font-size: small">请您在 <font> 24小时 </font> 内完成支付，否则订单会被自动取消</span>
+<!--            <span>订单详细</span>-->
           </dd>
         </dl>
       </div>
@@ -42,10 +43,10 @@
               </span>
             </li>
             <li>
-              <span>
-                <input name="a" type="radio"  value="mx" />
-                <img src="img\weixin.png" alt="">微信支付
-              </span>
+<!--              <span>-->
+<!--                <input name="a" type="radio"  value="mx" />-->
+<!--                <img src="img\weixin.png" alt="">微信支付-->
+<!--              </span>-->
 
             </li>
             <li>
@@ -72,12 +73,14 @@
   <script type="text/javascript">
       $(function() {
           $("#paymentButton").click(function () {
+            var paymethod = $("input[type='radio']:checked").val();
+            if(paymethod == undefined){
+               alert("请选择支付方式！");
+            }else{
               $("#paymentForm").attr("action","/"+$("input[type='radio']:checked").val()+"/submit")  ;
               $("#paymentForm").submit();
-
+            }
           })
-
-
       })
 
 

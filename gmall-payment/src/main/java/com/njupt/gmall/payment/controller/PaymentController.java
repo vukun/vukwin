@@ -45,7 +45,7 @@ public class PaymentController {
     @LoginRequired(loginSuccess = true)
     public String index(String outTradeNo, BigDecimal totalAmount, HttpServletRequest request, ModelMap modelMap){
         String memberId = (String) request.getAttribute("memberId");
-        String nickName = (String) request.getAttribute("nickname");
+        String nickName = (String) request.getAttribute("nickName");
         modelMap.put("totalAmount",totalAmount);
         modelMap.put("outTradeNo",outTradeNo);
         modelMap.put("nickName",nickName);

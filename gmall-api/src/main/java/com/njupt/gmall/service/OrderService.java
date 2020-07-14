@@ -2,6 +2,8 @@ package com.njupt.gmall.service;
 
 import com.njupt.gmall.bean.OmsOrder;
 
+import java.util.List;
+
 /**
  * @author zhaokun
  * @create 2020-06-10 9:38
@@ -17,4 +19,6 @@ public interface OrderService {
     OmsOrder getOrderByOutTradeNo(String outTradeNo);
 
     void updateOrder(OmsOrder omsOrder);
+
+    List<OmsOrder> getMyOrderListByMemberId(String memberId);
 }

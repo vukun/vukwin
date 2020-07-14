@@ -15,6 +15,10 @@ public class OmsOrder implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private String id;
+    @Transient
+    private int no;
+    @Transient
+    private String createtime;
     private String memberId;
     private String couponId;
     private String orderSn;
@@ -68,6 +72,22 @@ public class OmsOrder implements Serializable {
 
     public void setOmsOrderItems(List<OmsOrderItem> omsOrderItems) {
         this.omsOrderItems = omsOrderItems;
+    }
+
+    public int getNo() {
+        return no;
+    }
+
+    public void setNo(int no) {
+        this.no = no;
+    }
+
+    public String getCreatetime() {
+        return createtime;
+    }
+
+    public void setCreatetime(String createtime) {
+        this.createtime = createtime;
     }
 
     public String getId() {

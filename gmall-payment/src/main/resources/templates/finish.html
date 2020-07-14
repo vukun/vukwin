@@ -1,10 +1,102 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>支付成功</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <script src="/js/jquery-3.1.1.min.js" charset="utf-8"></script>
 </head>
 <body>
-      该订单支付完成
+<div class="One_Jdbox">
+    <div >
+        <a href="http://localhost:8083/index"  style="color: #f9f9f9">首页</a>
+    </div>
+    <div class="Jdbox_head">
+        <img src="/img/logo1.jpg" alt="">
+        <ul>
+<!--            <li><span style="border-top: 50px" th:text="'你好, '+ ${nickName} "></span></li>-->
+<!--            <li>我的订单</li>-->
+<!--            <li>支付帮助</li>-->
+        </ul>
+    </div>
+    <div class="Jdbox_BuySuc">
+        <dl>
+            <dd>
+                <br/><br/>
+                <span style="font-size: x-large" th:text="'恭喜您，支付成功！'"> </span>
+                <span style="font-size: large" onclick="myorder()">订单详细</span>
+            </dd>
+        </dl>
+    </div>
+    <div class="Jd_Con">
+            <ul>
+                <li>
+                    <br/><br/>
+                    <img src="/img/process.jpg" alt="">
+              <span style="font-size:17px;color: black" >
+                  &nbsp;&nbsp;&nbsp;&nbsp;目前正在加紧处理您的订单，尽快给您安排发货！
+              </span>
+                </li>
+                <li>
+              <span>
+                  &nbsp;&nbsp;
+              </span>
+
+                </li>
+                <li>
+                    <span>
+                  &nbsp;&nbsp;
+              </span>
+                </li>
+                <li>
+                    <span>
+                  &nbsp;&nbsp;
+              </span>
+                </li>
+                <li>
+                    <span>
+                  &nbsp;&nbsp;
+              </span>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+
+</div>
+
+<form    method="post" id="paymentForm">
+
+    <input type="hidden" name="orderId" th:value="${orderId}" >
+</form>
+
+
 </body>
+<script type="text/javascript">
+    $(function() {
+        $("#paymentButton").click(function () {
+            $("#paymentForm").attr("action","/"+$("input[type='radio']:checked").val()+"/submit")  ;
+            $("#paymentForm").submit();
+
+        })
+
+    })
+
+
+
+
+
+    //立即支付按钮效果
+    $("#paymentButton").mouseover(function(){
+        $(this).css({"cursor":"pointer","background":"#FF5350"})
+    }).mouseout(function(){
+        $(this).css("background","#FC6E6C")
+    })
+
+    function myorder() {
+        window.location.href = "http://localhost:8086/myOrder";
+    }
+
+
+</script>
 </html>

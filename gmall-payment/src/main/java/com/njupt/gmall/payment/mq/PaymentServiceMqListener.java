@@ -33,7 +33,7 @@ public class PaymentServiceMqListener {
             count = Integer.parseInt(""+mapMessage.getString("count"));
         }
         //调用paymentService的方法去查询支付宝支付结果的查询接口alipay.trade.query
-        System.out.println("进行延迟检查，调用支付检查的借口服务");
+        System.out.println("进行延迟检查，调用支付检查的接口服务");
         Map<String, Object> resultMap = paymentService.checkAlipayPayment(out_trade_no);
         //判断返回的结果是否为空
         //不为空的时候才进行下一步的操作

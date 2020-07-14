@@ -8,10 +8,10 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpStatus;
 
 @SpringBootApplication
-public class GmallCartWebApplication {
+public class GmallItemWebApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(GmallCartWebApplication.class, args);
+        SpringApplication.run(GmallItemWebApplication.class, args);
     }
 
     @Bean

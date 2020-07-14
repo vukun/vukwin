@@ -21,6 +21,8 @@ public class AuthInterceptor extends HandlerInterceptorAdapter {
 
         // 判断被拦截请求的访问的方法是否有注解(是否需要拦截)，有，拦截，没有就放行
         //根据请求的方法名，利用反射的技术，得到该方法名的注解 methodAnnotation
+        // HandlerMethod封装了很多属性，在访问请求方法的时候可以方便的访问到方法、方法参数、方法上的注解、所属类等
+        // 并且对方法参数封装处理，也可以方便的访问到方法参数的注解等信息。
         HandlerMethod hm = (HandlerMethod) handler;
         LoginRequired methodAnnotation = hm.getMethodAnnotation(LoginRequired.class);
 
@@ -73,7 +75,7 @@ public class AuthInterceptor extends HandlerInterceptorAdapter {
             // 验证通过
             // 需要将token携带的用户信息写入
             request.setAttribute("memberId", successMap.get("memberId"));
-            request.setAttribute("nickname", successMap.get("nickname"));
+            request.setAttribute("nickName", successMap.get("nickName"));
             //验证通过，并且需要覆盖cookie中的token，
             // 因为原始的cookie中的Token是有过期时间的，当刷新一次的时候会使得过期时间延长
             if(StringUtils.isNotBlank(token)){
@@ -84,7 +86,7 @@ public class AuthInterceptor extends HandlerInterceptorAdapter {
             if (success.equals("success")) {
                 // 需要将token携带的用户信息写入
                 request.setAttribute("memberId", successMap.get("memberId"));
-                request.setAttribute("nickname", successMap.get("nickname"));
+                request.setAttribute("nickName", successMap.get("nickName"));
                 //验证通过，覆盖cookie中的token
                 if(StringUtils.isNotBlank(token)){
                     CookieUtil.setCookie(request,response,"oldToken",token,60*60*2,true);

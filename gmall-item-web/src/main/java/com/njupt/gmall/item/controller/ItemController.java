@@ -2,6 +2,7 @@ package com.njupt.gmall.item.controller;
 
 import com.alibaba.dubbo.config.annotation.Reference;
 import com.alibaba.fastjson.JSON;
+import com.njupt.gmall.annotations.LoginRequired;
 import com.njupt.gmall.bean.PmsProductSaleAttr;
 import com.njupt.gmall.bean.PmsSkuInfo;
 import com.njupt.gmall.bean.PmsSkuSaleAttrValue;
@@ -35,6 +36,7 @@ public class ItemController {
      * @return
      */
     @RequestMapping("{skuId}.html")
+    @LoginRequired(loginSuccess = false)
     public String getSkuInfo(@PathVariable String skuId, ModelMap modelMap){
         //查询商品详细信息
         PmsSkuInfo pmsSkuInfo = pmsSkuService.getSkuInfo(skuId);
