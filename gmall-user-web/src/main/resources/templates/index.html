@@ -5159,13 +5159,11 @@ Cookie</span>是由网页服务器存放在您的访问设备上的文本文件�
 					//input各种判断
 					//用户名：
 				$('input').eq(0).blur(function() {
+					// alert($(this).val());
 						if($(this).val().length == 0) {
 							$(this).parent().next("div").text("");
 							$(this).parent().next("div").css("color", '#ccc');
-						} else if($(this).val().length > 0 && $(this).val().length < 4) {
-							$(this).parent().next("div").text("长度只能在4-20个字符之间");
-							$(this).parent().next("div").css("color", 'red');
-						} else if($(this).val().length >= 4 && !isNaN($(this).val())) {
+						}  else if($(this).val().length >= 4 && !isNaN($(this).val())) {
 							$(this).parent().next("div").text("用户名不能为纯数字");
 							$(this).parent().next("div").css("color", 'red');
 						} else {
@@ -5278,8 +5276,8 @@ Cookie</span>是由网页服务器存放在您的访问设备上的文本文件�
 					if($("#xieyi")[0].checked) {
 						//向变量stuList数组添加一个数值，数值内部格式Student(name,password,tel,id)
 						//发送用户信息
-						stuList.push(new Student($('input').eq(0).val(), $('input').eq(1).val(), $('input').eq(3).val(), stuList.length + 1));
-						localStorage.setItem('stuList', JSON.stringify(stuList));
+						// stuList.push(new Student($('input').eq(0).val(), $('input').eq(1).val(), $('input').eq(3).val(), stuList.length + 1));
+						// localStorage.setItem('stuList', JSON.stringify(stuList));
 						// alert("注册成功");
 						// window.open("userlist.html", "_blank");
 					} else {
@@ -5301,7 +5299,7 @@ Cookie</span>是由网页服务器存放在您的访问设备上的文本文件�
 					this.tel = tel;
 					this.id = id;
 				}
-				//	获取之前所有已经注册的用户集合
+				// //	获取之前所有已经注册的用户集合
 				function getStuList() {
 					var list = localStorage.getItem('stuList');
 					// alert(list);
