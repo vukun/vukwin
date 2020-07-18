@@ -43,10 +43,7 @@ public class UserController {
     }
 
     @RequestMapping("index")
-    public ModelAndView index(HttpServletRequest request){
-        String username = request.getParameter("username");
-        String password = request.getParameter("password");
-        String phone = request.getParameter("phone");
+    public ModelAndView index(String username, String password, String phone){
         ModelAndView mv = null;
         if(username != null){
             UmsMember umsMember = new UmsMember();

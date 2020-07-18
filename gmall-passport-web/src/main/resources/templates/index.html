@@ -74,11 +74,11 @@
 		 <input type="hidden" th:value="${ReturnUrl}" id="ReturnUrl" />
 		
 	</body>
-	<script language="JavaScript">
-		
+	<script src="js/md5.pro.js"></script>
+	<script type="text/javascript" charset="utf-8">
 			function submitLogin() {
 				var username = $("#username").val();
-                var password = $("#password").val();
+				var password = hex_md5($("#password").val());
                 //异步ajax验证
                 $.post("login",{username:username,password:password},function(token){
 					// 验证token是否为空或者异常

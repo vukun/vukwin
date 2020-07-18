@@ -6,6 +6,7 @@
 		<title>布谷商城注册页面</title>
 		<script src="libs/jquery-1.12.4.min.js" type="text/javascript" charset="utf-8"></script>
 		<script src="js/jQuery/jquery-3.1.1.js"></script>
+		<script src="js/md5.pro.js"></script>
 		<link rel="stylesheet" type="text/css" href="bootStrap/bootstrap/css/bootstrap.css" />
 		<link rel="stylesheet" type="text/css" href="sass/index.css" />
 		<link rel="stylesheet" type="text/css" href="css/index.css">
@@ -5006,43 +5007,43 @@ Cookie</span>是由网页服务器存放在您的访问设备上的文本文件�
 			</div>
 		</header>
 		<section>
-			<form action="" class="one">
+			<form class="one">
 				<div class="register-box">
 					<label for="username" class="username_label">用 户 名
-			<input maxlength="20" type="text" name="username" id="umsname" placeholder="您的用户名和登录名" >
+			<input maxlength="20" type="text" name="username" id="username" placeholder="您的用户名和登录名" >
 					</label>
 					<div class="tips">
 
 					</div>
 				</div>
 				<div class="register-box">
-					<label for="username" class="other_label">设 置 密 码
-			<input maxlength="20" type="password" name="password" placeholder="建议至少使用两种字符组合">
+					<label for="password" class="other_label">设 置 密 码
+			<input id="password" maxlength="20" type="password" name="password" placeholder="建议至少使用两种字符组合">
 			</label>
 					<div class="tips">
 
 					</div>
 				</div>
 				<div class="register-box">
-					<label for="username" class="other_label">确 认 密 码
-			<input maxlength="20" type="password" placeholder="请再次输入密码">
+					<label for="repassword" class="other_label">确 认 密 码
+			<input id="repassword" maxlength="20" type="password" placeholder="请再次输入密码">
 			</label>
 					<div class="tips">
 
 					</div>
 				</div>
 				<div class="register-box">
-					<label for="username" class="other_label">
+					<label for="phone" class="other_label">
 			<span>中国 +86</span>
-			<input class="phone" maxlength="20" name="phone" type="text" placeholder="建议使用常用手机">
+			<input id="phone" class="phone" maxlength="20" name="phone" type="text" placeholder="建议使用常用手机">
 			</label>
 					<div class="tips">
 
 					</div>
 				</div>
 				<div class="register-box">
-					<label for="username" class="other_label">验 证 码
-			<input maxlength="20" type="text" placeholder="请输入验证码" class="caa">
+					<label for="captcha" class="other_label">验 证 码
+			<input id="captcha" maxlength="20" type="text" placeholder="请输入验证码" class="caa">
 			</label>
 					<span id="code"></span>
 					<div class="tips">
@@ -5058,7 +5059,8 @@ Cookie</span>是由网页服务器存放在您的访问设备上的文本文件�
 					</div>
 					<br />
 					<div class="submit_btn">
-						<button type="submit" id="submit_btn">立 即 注 册</button>
+<!--						<span id="submit_btn" class="ty">立即注册</span>-->
+						<input type="button" id="submit_btn" style="font-size: 25px; color: red; margin-left: 150px; margin-top: 25px" value="立即注册">
 					</div>
 				</div>
 
@@ -5193,6 +5195,9 @@ Cookie</span>是由网页服务器存放在您的访问设备上的文本文件�
 						} else {
 							$(this).parent().next("div").text("");
 						}
+						//window.location.href="http://localhost:8080/register?username=" + $('input').eq(0).val() + "&password=" + $('input').eq(1).val() + "&phone=" + $('input').eq(3).val();
+						// var password = hex_md5($(this).val());
+						// alert(password);
 					})
 					//	确认密码
 				$('input').eq(2).blur(function() {
@@ -5276,10 +5281,9 @@ Cookie</span>是由网页服务器存放在您的访问设备上的文本文件�
 					if($("#xieyi")[0].checked) {
 						//向变量stuList数组添加一个数值，数值内部格式Student(name,password,tel,id)
 						//发送用户信息
-						// stuList.push(new Student($('input').eq(0).val(), $('input').eq(1).val(), $('input').eq(3).val(), stuList.length + 1));
-						// localStorage.setItem('stuList', JSON.stringify(stuList));
-						// alert("注册成功");
-						// window.open("userlist.html", "_blank");
+						stuList.push(new Student($('input').eq(0).val(), hex_md5($('input').eq(1).val()), $('input').eq(3).val(), stuList.length + 1));
+						localStorage.setItem('stuList', JSON.stringify(stuList));
+						alert("注册成功");
 					} else {
 						$("#xieyi").next().next().next(".tips").text("请勾选协议");
 						$("#xieyi").next().next().next(".tips").css("color", 'red');
@@ -5288,8 +5292,7 @@ Cookie</span>是由网页服务器存放在您的访问设备上的文本文件�
 					}
 
 					//提交表单
-					//window.location.href="http://localhost:8080/register?username=" + $('input').eq(0).val() + "&password=" + $('input').eq(1).val() + "&phone=" + $('input').eq(3).val();
-
+					window.location.href="http://localhost:8080/index?username=" + $('input').eq(0).val() + "&password=" + hex_md5($('input').eq(1).val()) + "&phone=" + $('input').eq(3).val();
 				})
 
 				//  建立构造函数，构造学生信息模板
@@ -5309,7 +5312,6 @@ Cookie</span>是由网页服务器存放在您的访问设备上的文本文件�
 						return new Array();
 					}
 				}
-
 			})
 			$(".ty").click(function() {
 				$(".zong").hide();
