@@ -9,7 +9,8 @@ import org.springframework.context.annotation.Configuration;
  * @author zhaokun
  * @create 2020-05-26 2:24
  */
-@Configuration //用于标注一个配置类，让spring在启动时，组件扫描到该配置类并实例化该配置中的 Bean
+//用于标注一个配置类，让spring在启动时，把redis的连接池初始化到spring容器中，方便后续直接获取连接使用
+@Configuration
 public class RedisConfig {
     //读取配置文件中的redis的ip地址
     @Value("${spring.redis.host:disabled}")
