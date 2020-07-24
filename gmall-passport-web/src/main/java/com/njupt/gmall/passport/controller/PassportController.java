@@ -108,7 +108,7 @@ public class PassportController {
         paramMap.put("client_id","1478025309");
         paramMap.put("client_secret","e132eecc220d641a340575de6ab4ffe9");
         paramMap.put("grant_type","authorization_code");
-        paramMap.put("redirect_uri","http://192.168.1.185:8085/vlogin");
+        paramMap.put("redirect_uri","http://192.168.1.186:8085/vlogin");
         paramMap.put("code",code);// 授权有效期内可以使用，没新生成一次授权码，说明用户对第三方数据进行重启授权，之前的access_token和授权码全部过期
         String access_token_json = HttpclientUtil.doPost(s3, paramMap);
 

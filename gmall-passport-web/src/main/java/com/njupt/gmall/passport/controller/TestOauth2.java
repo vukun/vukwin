@@ -12,9 +12,9 @@ public class TestOauth2 {
 
         // 1 获得授权码
         // 1478025309
-        // http://192.168.1.185:8085/vlogin
+        // http://192.168.1.186:8085/vlogin
 
-        String s1 = HttpclientUtil.doGet("https://api.weibo.com/oauth2/authorize?client_id=1478025309&response_type=code&redirect_uri=http://192.168.1.185:8085/vlogin");
+        String s1 = HttpclientUtil.doGet("https://api.weibo.com/oauth2/authorize?client_id=1478025309&response_type=code&redirect_uri=http://192.168.1.186:8085/vlogin");
 
         System.out.println(s1);
 
@@ -28,12 +28,12 @@ public class TestOauth2 {
     public static String getAccess_token(){
         // 3 换取access_token
         // client_secret=a79777bba04ac70d973ee002d27ed58c
-        String s3 = "https://api.weibo.com/oauth2/access_token?";//?client_id=1478025309&client_secret=e132eecc220d641a340575de6ab4ffe9&grant_type=authorization_code&redirect_uri=http://192.168.1.185:8085/vlogin&code=CODE";
+        String s3 = "https://api.weibo.com/oauth2/access_token?";//?client_id=1478025309&client_secret=e132eecc220d641a340575de6ab4ffe9&grant_type=authorization_code&redirect_uri=http://192.168.1.186:8085/vlogin&code=CODE";
         Map<String,String> paramMap = new HashMap<>();
         paramMap.put("client_id","1478025309");
         paramMap.put("client_secret","e132eecc220d641a340575de6ab4ffe9");
         paramMap.put("grant_type","authorization_code");
-        paramMap.put("redirect_uri","http://192.168.1.185:8085/vlogin");
+        paramMap.put("redirect_uri","http://192.168.1.186:8085/vlogin");
         paramMap.put("code","a93f214d440fa48074a6f4f4e7cc5422");// 授权有效期内可以使用，没新生成一次授权码，说明用户对第三方数据进行重启授权，之前的access_token和授权码全部过期
         String access_token_json = HttpclientUtil.doPost(s3, paramMap);
 
