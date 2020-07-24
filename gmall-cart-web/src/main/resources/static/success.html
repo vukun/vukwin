@@ -50,7 +50,7 @@
 
         <div class="nav_top">
         <div class="nav_top_one">
-        <a href="/#"><img src="/img/logo1.jpg" style="height: 60px;width:180px;"  /></a>
+        <a href="#"><img src="/img/logo1.jpg" style="height: 60px;width:180px;"  /></a>
         </div>
         <div class="nav_top_two"><input type="text" /><button>搜索</button></div>
 
@@ -74,11 +74,11 @@
         <h3 class="ftx-02">商品已成功加入购物车</h3></div>
     <div class="p-item">
         <div class="p-img">
-        <a href="/javascript:;" target="_blank"><img style="height: 60px;width:60px;"  th:src="${skuInfo?.skuDefaultImg}" src="/img/shop1.jpg"></a>
+        <img style="height: 60px;width:60px;"   src="/img/shop1.jpg"></a>
         </div>
         <div class="p-info">
         <div class="p-name">
-        <a th:href="'http://item.gmall.com/'+${skuInfo?.id}+'.html'"  th:text="${skuInfo?.skuName}"  >TCL 55A950C 55英寸32核人工智能 HDR曲面超薄4K电视金属机身（枪色）</a>
+        TCL 55A950C 55英寸32核人工智能 HDR曲面超薄4K电视金属机身（枪色）
     </div>
     <div class="p-extra"> <span class="txt" th:text="'数量：'+${skuNum}" >  数量：1</span></div>
     </div>
@@ -87,11 +87,10 @@
         </div>
         <div class="success-btns success-btns-new">
         <div class="success-ad">
-        <a href="/#none"></a>
         </div>
         <div class="clr"></div>
         <div class="bg_shop">
-        <a class="btn-tobback" th:href="'http://localhost:8082/'+${skuInfo?.id}+'.html'">查看商品详情</a>
+<!--        <a class="btn-tobback" href="#">查看商品详情</a>-->
         <a class="btn-addtocart"  href="http://localhost:8084/cartList" id="GotoShoppingCart"><b></b>去购物车结算</a>
    </div>
     </div>

@@ -66,8 +66,8 @@
 							<li>
 								<a href="http://localhost:8080/index.html"  class="aa" id="registerData" style="display: none">免费注册</a>
 							</li>
-							<li id="successLoginData" style="display: none"><span th:text="'你好，'+ ${nickName}" class="aa"></span>
-<!--							<span>|</span>-->
+							<li id="successLoginData" style="display: none"><span th:text="'你好, '+ ${nickName}" class="li_2"></span></li>
+							<li id="successLoginData1" style="display: none"><span id="exit" class="li_2" onclick="exit()">退出</span></li>
 							<li>
 							<a href="http://localhost:8086/myOrder" style="font-size:13px;color: black">我的订单</a>
 							</li>
@@ -1023,6 +1023,10 @@
 	<script src="/js/spuId_66.js" type="text/javascript" charset="utf-8"></script>
 	<script src="/js/js.js" type="text/javascript" charset="utf-8"></script>
 	<script type="text/javascript">
+		function exit() {
+			window.location.href="http://localhost:8083/exit";
+		}
+
         function addToCart(obj){
             var canClick = $(obj).attr("canClick");
             if(canClick=='0'){
@@ -1060,6 +1064,7 @@
 				document.getElementById("registerData").style = "block";
 			}else{
 				document.getElementById("successLoginData").style = "block";
+				document.getElementById("successLoginData1").style = "block";
 			}
 		})
 

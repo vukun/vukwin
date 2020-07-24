@@ -102,7 +102,8 @@
           <li>
             <a href="http://localhost:8080/index" class="li_2" id="registerData" style="display: none">免费注册</a>
           </li>
-          <li id="successLoginData" style="display: none"><span th:text="'你好，'+ ${nickName}" class="li_2"></span><span class="li_2">，退出</span></li>
+          <li id="successLoginData" style="display: none"><span th:text="'你好, '+ ${nickName}" class="li_2"></span></li>
+          <li id="successLoginData1" style="display: none"><span id="exit" class="li_2" onclick="exit()">退出</span></li>
           <span>|</span>
           <li>
             <a href="http://localhost:8086/myOrder" style="font-size:13px;color: black">我的订单</a>
@@ -665,6 +666,9 @@
  
 </body>
 <script type="text/javascript">
+  function exit() {
+    window.location.href="http://localhost:8083/exit";
+  }
   function search() {
       var keyword=$("#searchText").val();
       window.location.href="http://localhost:8083/list?keyword="+keyword;
@@ -677,6 +681,7 @@
           document.getElementById("registerData").style = "block";
       }else{
           document.getElementById("successLoginData").style = "block";
+          document.getElementById("successLoginData1").style = "block";
       }
   })
 

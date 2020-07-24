@@ -5,12 +5,15 @@ import com.njupt.gmall.annotations.LoginRequired;
 import com.njupt.gmall.bean.*;
 import com.njupt.gmall.service.PmsAttrService;
 import com.njupt.gmall.service.SearchService;
+import com.njupt.gmall.service.UserService;
+import com.njupt.gmall.util.CookieUtil;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.util.*;
 
 /**
@@ -24,6 +27,8 @@ public class  SearchController {
     SearchService searchService;
     @Reference
     PmsAttrService pmsAttrService;
+    @Reference
+    UserService userService;
 
 
     //展示首页的信息
@@ -32,6 +37,21 @@ public class  SearchController {
     public String index(HttpServletRequest request, ModelMap modelMap){
         String nickName = (String) request.getAttribute("nickName");
         modelMap.put("nickName", nickName);
+        return "index";
+    }
+
+    @RequestMapping("exit")
+    @LoginRequired(loginSuccess = false)
+    public String exit(HttpServletRequest request, HttpServletResponse response, ModelMap modelMap){
+        String nickName = (String) request.getAttribute("nickName");
+        if(StringUtils.isNoneBlank(nickName)){
+            userService.exit(nickName);
+            String oldToken = CookieUtil.getCookieValue(request, "oldToken", true);
+            if(StringUtils.isNotBlank(oldToken)){
+                CookieUtil.deleteCookie(request, response, "oldToken");
+            }
+            modelMap.put("nickName", "");
+        }
         return "index";
     }
 

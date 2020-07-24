@@ -2,25 +2,48 @@
 <project version="4">
   <component name="Encoding">
     <file url="file://$PROJECT_DIR$/gmall-api" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/gmall-api/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/gmall-cart-service" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/gmall-cart-service/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/gmall-cart-web" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/gmall-cart-web/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/gmall-common-util" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/gmall-common-util/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/gmall-item-web" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/gmall-item-web/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/gmall-manager-service" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/gmall-manager-service/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/gmall-manager-web" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/gmall-manager-web/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/gmall-order-service" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/gmall-order-service/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/gmall-order-web" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/gmall-order-web/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/gmall-order-web/src/main/resources/static/myorder/.sass-cache/a0a597ff9d7c7979929ceea25bf583b7e70f4995/index.scssc" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/gmall-parent" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/gmall-parent/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/gmall-parent/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/gmall-passport-web" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/gmall-passport-web/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/gmall-payment" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/gmall-payment/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/gmall-redission-test" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/gmall-redission-test/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/gmall-search-service" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/gmall-search-service/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/gmall-search-web" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/gmall-search-web/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/gmall-seckill" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/gmall-seckill/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/gmall-service-util" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/gmall-service-util/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/gmall-user-service" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/gmall-user-service/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/gmall-user-web" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/gmall-user-web/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/gmall-web-util" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/gmall-web-util/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/gware-manage" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/gware-manage/src/main/java" charset="UTF-8" />
   </component>
 </project>

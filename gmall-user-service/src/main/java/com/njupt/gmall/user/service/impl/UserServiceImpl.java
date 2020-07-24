@@ -151,6 +151,23 @@ public class UserServiceImpl implements UserService {
         umsMemberReceiveAddressMapper.insertSelective(umsMemberReceiveAddress);
     }
 
+    /**
+     * 退出登录
+     * @param nickName
+     */
+    @Override
+    public void exit(String nickName) {
+        UmsMember umsMember = new UmsMember();
+        umsMember.setNickname(nickName);
+        UmsMember umsMember1 = userMapper.selectOne(umsMember);
+        String password = umsMember1.getPassword();
+        Jedis jedis = redisUtil.getJedis();
+        String key = "user:" + password + nickName + ":info";
+        if(StringUtils.isNoneBlank(jedis.get(key))){
+            jedis.del(key);
+        }
+    }
+
 
     /**
      * 缓存中如果没有，就需要从数据库中取数据
