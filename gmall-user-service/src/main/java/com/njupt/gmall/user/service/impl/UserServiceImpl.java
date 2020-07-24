@@ -161,11 +161,18 @@ public class UserServiceImpl implements UserService {
         umsMember.setNickname(nickName);
         UmsMember umsMember1 = userMapper.selectOne(umsMember);
         String password = umsMember1.getPassword();
+        String memberId = umsMember1.getId();
+        Jedis jedis = redisUtil.getJedis();
         if(StringUtils.isNotBlank(password)){
-            Jedis jedis = redisUtil.getJedis();
             String key = "user:" + password + nickName + ":info";
             if(StringUtils.isNoneBlank(jedis.get(key))){
                 jedis.del(key);
+            }
+        }
+        if(StringUtils.isNotBlank(memberId)){
+            String token = "user:" + memberId + ":token";
+            if(StringUtils.isNoneBlank(jedis.get(token))){
+                jedis.del(token);
             }
         }
     }
