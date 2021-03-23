@@ -60,7 +60,7 @@ public class UserServiceImpl implements UserService {
             //或者要么是密码错误，要么是缓存中没有用户信息数据,如果是缓存中没有数据，需要从DB中获取
             UmsMember umsMemberFromDb = loginFromDb(umsMember);
             if(umsMemberFromDb != null){
-                jedis.setex("user:" + umsMember.getPassword() + umsMember.getUsername() + ":info", 60*60*24, JSON.toJSONString(umsMemberFromDb));
+                jedis.setex("user:" + md5Utils.getMd5ofStr(umsMember.getPassword()) + umsMember.getUsername() + ":info", 60*60*24, JSON.toJSONString(umsMemberFromDb));
             }
             return umsMemberFromDb;
         }finally {
