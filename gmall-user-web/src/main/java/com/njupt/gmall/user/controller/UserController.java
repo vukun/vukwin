@@ -34,6 +34,7 @@ public class UserController {
         return usernameResult;
     }
 
+
     @RequestMapping("checkPhone")
     @ResponseBody
     public String checkPhone(HttpServletRequest request){
@@ -42,6 +43,13 @@ public class UserController {
         return phoneResult;
     }
 
+    /**
+     * 用户注册的方法，
+     * @param username 用户名
+     * @param password 用户密码
+     * @param phone    注册手机号
+     * @return
+     */
     @RequestMapping("index")
     public ModelAndView index(String username, String password, String phone){
         ModelAndView mv = null;
