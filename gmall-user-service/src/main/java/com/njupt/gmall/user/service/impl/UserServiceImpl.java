@@ -7,6 +7,7 @@ import com.njupt.gmall.bean.UmsMemberReceiveAddress;
 import com.njupt.gmall.service.UserService;
 import com.njupt.gmall.user.mapper.UmsMemberReceiveAddressMapper;
 import com.njupt.gmall.user.mapper.UserMapper;
+import com.njupt.gmall.util.Md5Utils;
 import com.njupt.gmall.util.RedisUtil;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,7 +32,9 @@ public class UserServiceImpl implements UserService {
 
 
     /**
-     * 登录页面,验证用户输入的账户和密码是否正确
+     * 登录页面,验证用户输入的账户和密码是否正确。 因为后端也进行了MD5加密，
+     * 所以需要把前端登录的密码再一次后端MD5加密与redis或者DB中的密码进行验证 。md5Utils.getMd5ofStr(umsMember.getPassword())
+     *
      * 为了缓解高并发的压力，网站会先把用户信息放入缓存中，方便快速查询到
      * 所以需要先从缓存中取数据,如果缓存中没有，就去mysql去取
      * @param umsMember
@@ -39,13 +42,14 @@ public class UserServiceImpl implements UserService {
      */
     @Override
     public UmsMember login(UmsMember umsMember) {
-
+        Md5Utils md5Utils = new Md5Utils();
         Jedis jedis = null;
+
         try{
             jedis = redisUtil.getJedis();
             //如果jedis不等于空，说明可以从缓存中取数据
             if(jedis != null){
-                String umsMemberStr = jedis.get("user:" + umsMember.getPassword() + umsMember.getUsername() + ":info");
+                String umsMemberStr = jedis.get("user:" + md5Utils.getMd5ofStr(umsMember.getPassword()) + umsMember.getUsername() + ":info");
                 if(StringUtils.isNotBlank(umsMemberStr)){
                     //说明缓存中有用户数据信息
                     UmsMember umsMemberFromCache = JSON.parseObject(umsMemberStr, UmsMember.class);
