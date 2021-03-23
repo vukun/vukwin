@@ -122,6 +122,10 @@ public class UserServiceImpl implements UserService {
         return umsMemberReceiveAddress1;
     }
 
+    /**
+     * 用户注册的方法，将用户的信息写入到数据库中
+     * @param umsMember
+     */
     @Override
     public void register(UmsMember umsMember) {
         umsMember.setMemberLevelId("1");
