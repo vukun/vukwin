@@ -43,13 +43,18 @@ public class UserServiceImpl implements UserService {
     @Override
     public UmsMember login(UmsMember umsMember) {
         Md5Utils md5Utils = new Md5Utils();
+
+        String password = umsMember.getPassword();
+        String passwordOfEncode = md5Utils.getMd5ofStr(password);
+        umsMember.setPassword(passwordOfEncode);
+
         Jedis jedis = null;
 
         try{
             jedis = redisUtil.getJedis();
             //如果jedis不等于空，说明可以从缓存中取数据
             if(jedis != null){
-                String umsMemberStr = jedis.get("user:" + md5Utils.getMd5ofStr(umsMember.getPassword()) + umsMember.getUsername() + ":info");
+                String umsMemberStr = jedis.get("user:" + umsMember.getPassword() + umsMember.getUsername() + ":info");
                 if(StringUtils.isNotBlank(umsMemberStr)){
                     //说明缓存中有用户数据信息
                     UmsMember umsMemberFromCache = JSON.parseObject(umsMemberStr, UmsMember.class);
@@ -60,7 +65,7 @@ public class UserServiceImpl implements UserService {
             //或者要么是密码错误，要么是缓存中没有用户信息数据,如果是缓存中没有数据，需要从DB中获取
             UmsMember umsMemberFromDb = loginFromDb(umsMember);
             if(umsMemberFromDb != null){
-                jedis.setex("user:" + md5Utils.getMd5ofStr(umsMember.getPassword()) + umsMember.getUsername() + ":info", 60*60*24, JSON.toJSONString(umsMemberFromDb));
+                jedis.setex("user:" + umsMember.getPassword() + umsMember.getUsername() + ":info", 60*60*24, JSON.toJSONString(umsMemberFromDb));
             }
             return umsMemberFromDb;
         }finally {
