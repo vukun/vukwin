@@ -22,7 +22,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-
 /**
  * @author zhaokun
  * @create 2020-05-30 22:06
@@ -49,6 +48,7 @@ public class SearchServiceImpl implements SearchService {
     @Override
     public List<PmsSearchSkuInfo> list(PmsSearchParam pmsSearchParam) {
         String dslStr = getSearchDsl(pmsSearchParam);
+        System.out.println(dslStr);
 //        System.err.println(dslStr);
         // 用api执行复杂查询
         List<PmsSearchSkuInfo> pmsSearchSkuInfos = new ArrayList<>();
