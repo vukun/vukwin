@@ -102,7 +102,7 @@ public class PaymentServiceImpl implements PaymentService {
 
     @Override
     public void sendDelayPaymentResultCheck(String outTradeNo, int count) {
-        //获得从MQ连接池获取一个MQ队列的连接，并且创建会话
+        //从MQ连接池获取一个MQ队列的连接，并且创建会话
         Connection connection = null;
         Session session = null;
         try {
